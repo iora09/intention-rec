@@ -1,0 +1,13 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane fx:controller="com.LPSWorkflow.controller.MessageViewController"
+            xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <VBox fx:id="messageBox">
+            <padding>
+                <Insets top="5" bottom="5" left="5" right="5"/>
+            </padding>
+        </VBox>
+    </top>
+</BorderPane>

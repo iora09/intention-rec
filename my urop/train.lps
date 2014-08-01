@@ -1,0 +1,43 @@
+ReactiveRules{
+   head(X) :  orders(X,Y) -> do(Y).
+}
+
+Goals{
+}
+
+
+Database{
+   Facts{
+      driver(daug),
+      isDrunk(daug),
+      head(tom),
+      on_rails(bob),
+      knows(tom)
+   }
+   
+   Clauses{
+     trainInDanger <- driver(X) & isDrunk(X).
+   }
+}
+
+
+DomainTheory{
+   initiates(save_cargo) <- do(throwSwitch).
+   initiates(derailed) <- do(throwSwitch).
+   initiates(dead(bob)) <- do(throwSwitch) & on_rails(bob).
+   terminates(cargo) <- crash.
+    
+}
+
+Events{  
+	orders(tom,throwSwitch)
+   
+}
+
+Fluents{
+   driver, isDrunk, save_cargo, derailed, dead, cargo
+}
+
+Preferences{
+}
+      

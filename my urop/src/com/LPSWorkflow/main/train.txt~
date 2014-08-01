@@ -1,0 +1,6 @@
+do(throwSwitch) -> save_cargo
+do(throwSwitch) -> derailed
+do(throwSwitch) & on_rails(X) -> dead(X)
+head(X) & orders(X,Y) -> do(Y)
+hate(X) -> kill(X)
+kill(X) -> dead(X)

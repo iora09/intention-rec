@@ -1,0 +1,77 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane fx:controller="com.LPSWorkflow.main.Controller"
+            xmlns:fx="http://javafx.com/fxml" styleClass="resize-grabber"
+            pickOnBounds="false">
+    <BorderPane AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <!-- Top MenuBar -->
+        <top>
+            <AnchorPane fx:id="titleBar" styleClass="custom-title-bar"
+                        maxHeight="20">
+                <fx:include source="../view/menuBarView.fxml"/>
+                <ToggleButton fx:id="helpButton" styleClass="title-button"
+                              AnchorPane.rightAnchor="1">
+                    <graphic>
+                        <ImageView fitWidth="18" fitHeight="18"
+                                   styleClass="keyboard-image-view"/>
+                    </graphic>
+                </ToggleButton>
+            </AnchorPane>
+        </top>
+        <!-- Main contents for the workflow -->
+        <center>
+            <Pane fx:id="mainPane">
+                <SplitPane fx:id="mainSplitPane" dividerPositions="0.2f, 0.8f">
+                    <SplitPane SplitPane.resizableWithParent="true"
+                               orientation="VERTICAL" dividerPositions="0.5f">
+                        <fx:include source="../view/domainTheoryView.fxml"
+                                    SplitPane.resizableWithParent="true"/>
+                        <fx:include source="../view/preferenceView.fxml"
+                                    SplitPane.resizableWithParent="true"/>
+                    </SplitPane>
+                    <Pane fx:id="canvasParentPane">
+                        <TabPane fx:id="canvasTabPane" side="RIGHT"
+                                 tabClosingPolicy="UNAVAILABLE"
+                                 rotateGraphic="true"
+                                 prefWidth="${canvasParentPane.width}"
+                                 prefHeight="${canvasParentPane.height}">
+                            <!--  Although an IDE may give an error on the width/height binding, it works -->
+                            <Tab fx:id="workflowTab" text="Workflow">
+                                <graphic>
+                                    <ImageView fitWidth="18" fitHeight="18"
+                                               styleClass="draw-image-view"/>
+                                </graphic>
+                                <fx:include source="../view/canvasView.fxml"/>
+                            </Tab>
+                            <Tab fx:id="editTab" text="Edit">
+                                <graphic>
+                                    <ImageView fitWidth="14" fitHeight="18"
+                                               styleClass="edit-image-view"/>
+                                </graphic>
+                                <fx:include source="../view/editorView.fxml"/>
+                            </Tab>
+                        </TabPane>
+                        <fx:include source="../view/messageView.fxml"/>
+                    </Pane>
+                    <SplitPane SplitPane.resizableWithParent="true"
+                               orientation="VERTICAL" dividerPositions="0.6f">
+                        <fx:include source="../view/databaseView.fxml"
+                                    SplitPane.resizableWithParent="true"/>
+                        <fx:include source="../view/externalEventView.fxml"
+                                    SplitPane.resizableWithParent="true"/>
+                    </SplitPane>
+                </SplitPane>
+                <StackPane fx:id="shortcutsPane"
+                           visible="${helpButton.selected}">
+                    <padding>
+                        <Insets top="70" bottom="70" left="150" right="150"/>
+                    </padding>
+                    <fx:include source="../view/keyboardShortcutsView.fxml"/>
+                </StackPane>
+            </Pane>
+        </center>
+    </BorderPane>
+</AnchorPane>
